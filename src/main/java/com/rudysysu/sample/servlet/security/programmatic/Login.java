@@ -1,6 +1,7 @@
 package com.rudysysu.sample.servlet.security.programmatic;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,10 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         try {
             request.login(username, password);
+
+            boolean userInRole = request.isUserInRole("user");
+            System.out.println(userInRole);
+
             response.sendRedirect("user");
         } catch (ServletException e) {
             response.sendRedirect("login.html");
