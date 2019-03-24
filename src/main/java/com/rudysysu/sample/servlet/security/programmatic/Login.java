@@ -1,6 +1,7 @@
 package com.rudysysu.sample.servlet.security.programmatic;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,11 @@ public class Login extends HttpServlet {
         try {
             request.login(username, password);
 
-            boolean userInRole = request.isUserInRole("user");
-            System.out.println(userInRole);
+            System.out.println(request.isUserInRole("user"));
+            System.out.println(request.getRemoteUser());
+            
+            Principal userPrincipal = request.getUserPrincipal();
+            System.out.println(userPrincipal);
 
             response.sendRedirect("user");
         } catch (ServletException e) {

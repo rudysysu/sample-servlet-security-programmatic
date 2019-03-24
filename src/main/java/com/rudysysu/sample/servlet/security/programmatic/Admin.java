@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user")
-@ServletSecurity(@HttpConstraint(rolesAllowed = { "user" }))
-public class User extends HttpServlet {
+@WebServlet("/admin")
+@ServletSecurity(@HttpConstraint(rolesAllowed = { "admin" }))
+public class Admin extends HttpServlet {
     private static final long serialVersionUID = -2730106767844286820L;
 
     @Override
@@ -22,7 +22,7 @@ public class User extends HttpServlet {
         if (request.authenticate(response)) {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("有user角色，就可以看到这个页面");
+            out.println("有admin角色，就可以看到这个页面");
             out.println("<a href='logout'>登出</a>");
         }
     }
